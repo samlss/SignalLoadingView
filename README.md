@@ -136,7 +136,6 @@ Attributes description：
 
 | attr        | description  |
 | ------------- |:-------------:|
-
 | signal_color      | the signal color |
 | duration | the animator duration |
 | interpolator | the animator interpolator |
