@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SignalLoadingView">
+        <attr name="signal_color" format="color"></attr>
+        <attr name="duration" format="integer"></attr>
+        <attr name="interpolator" >
+            <flag name = "AccelerateDecelerateInterpolator" value = "0" />
+            <flag name = "AccelerateInterpolator" value = "1" />
+            <flag name = "DecelerateInterpolator" value = "2" />
+
+            <flag name = "BounceInterpolator" value = "3" />
+            <flag name = "CycleInterpolator" value = "4" />
+            <flag name = "LinearInterpolator" value = "5" />
+
+            <flag name = "AnticipateOvershootInterpolator" value = "6" />
+            <flag name = "AnticipateInterpolator" value = "7" />
+            <flag name = "OvershootInterpolator" value = "8" />
+        </attr>
+    </declare-styleable>
+</resources>
