@@ -53,6 +53,12 @@ public class SignalLoadingView extends View {
     private TimeInterpolator interpolator = new AccelerateDecelerateInterpolator();
     private long duration = DEFAULT_DURATION;
 
+    private RectF oval1;
+    private RectF oval2;
+    private RectF oval3;
+
+    private long animatorPlayTime;
+
     public SignalLoadingView(Context context) {
         super(context);
 
@@ -141,6 +147,10 @@ public class SignalLoadingView extends View {
         centerPaint.setAntiAlias(true);
         centerPaint.setColor(signalColor);
         centerPaint.setStyle(Paint.Style.FILL);
+
+        oval1 = new RectF();
+        oval2 = new RectF();
+        oval3 = new RectF();
     }
 
     private void setupAnimator(){
@@ -187,6 +197,7 @@ public class SignalLoadingView extends View {
         setupAnimator();
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -195,9 +206,9 @@ public class SignalLoadingView extends View {
         canvas.drawCircle(0, 0, circleRadius, signalPaint);
         canvas.drawCircle(0, 0, centerCircleRadius, centerPaint);
 
-        RectF oval1 = new RectF(  - circleRadius * 6 / 8f,  - circleRadius * 6 / 8f,  circleRadius * 6 / 8f,  circleRadius * 6 / 8f);
-        RectF oval2 = new RectF(  - circleRadius * 5 / 8f,  - circleRadius * 5 / 8f,  circleRadius * 5 / 8f,  circleRadius * 5 / 8f);
-        RectF oval3 = new RectF(  - circleRadius * 4 / 8f,  - circleRadius * 4 / 8f,  circleRadius * 4 / 8f,  circleRadius * 4 / 8f);
+        oval1.set(  - circleRadius * 6 / 8f,  - circleRadius * 6 / 8f,  circleRadius * 6 / 8f,  circleRadius * 6 / 8f);
+        oval2.set(  - circleRadius * 5 / 8f,  - circleRadius * 5 / 8f,  circleRadius * 5 / 8f,  circleRadius * 5 / 8f);
+        oval3.set(  - circleRadius * 4 / 8f,  - circleRadius * 4 / 8f,  circleRadius * 4 / 8f,  circleRadius * 4 / 8f);
 
         canvas.drawArc(oval1, -45,90, false, signalPaint);
         canvas.drawArc(oval2, -45,90, false, signalPaint);
@@ -228,13 +239,15 @@ public class SignalLoadingView extends View {
     }
 
     public void start(){
-        if (objectAnimator != null){
+        if (objectAnimator != null && !objectAnimator.isRunning()){
+            objectAnimator.setCurrentPlayTime(animatorPlayTime);
             objectAnimator.start();
         }
     }
 
     public void stop(){
-        if (objectAnimator != null){
+        if (objectAnimator != null && objectAnimator.isRunning()){
+            animatorPlayTime = objectAnimator.getCurrentPlayTime();
             objectAnimator.cancel();
         }
     }
