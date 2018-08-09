@@ -12,8 +12,6 @@ A signal rotation loading view(一个信号旋转loading view).
 
 <br>
 
-![gif2](https://github.com/samlss/SignalLoadingView/blob/master/screenshots/screenshot2.gif)
-<br>
 ![gif1](https://github.com/samlss/SignalLoadingView/blob/master/screenshots/screenshot1.gif)
 
 
